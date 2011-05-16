@@ -3,7 +3,7 @@ package Business::SWIFT;
 use warnings;
 use strict;
 
-require Locales::Country ;
+use Locales ;
 
 =head1 NAME
 
@@ -15,7 +15,7 @@ Version 0.01
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 SYNOPSIS
 
@@ -70,9 +70,9 @@ sub validateBIC{
         return 0;
     }
     
-    my $en = new Locales::Country( "en" );
+    my $en = Locales->new( "en" );
     
-    if ( ! $en->code2country( $countryCode ) ){
+    if ( ! $en->get_territory_from_code( $countryCode ) ){
         return 0;
     }
     
